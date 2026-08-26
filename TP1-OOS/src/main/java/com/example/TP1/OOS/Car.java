@@ -1,10 +1,13 @@
 package com.example.TP1.OOS;
 
+
+
 public class Car {
     private String platenumber ;
     private String brand ;
     private double price ;
     private boolean rent ;
+    private Dates date;
 
 
     public Car(){
@@ -12,6 +15,7 @@ public class Car {
         brand = "" ;
         price = 0 ;
         rent = false ;
+        date = new Dates("","") ;
     }
 
     public Car(String platenumber, String brand, double price) {
@@ -19,6 +23,7 @@ public class Car {
         this.brand = brand;
         this.price = price;
         this.rent = false ;
+        this.date = new Dates("","") ;
     }
 
     public double getPrice() {
@@ -39,5 +44,12 @@ public class Car {
     }
     public void setRented(boolean rent) {
         this.rent = rent;
+    }
+
+    public Dates getDate() {
+        return date;
+    }
+    public void setDate(Dates date) {
+        this.date = date;
     }
 }

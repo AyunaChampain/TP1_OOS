@@ -17,38 +17,28 @@ public class CarController {
     @Autowired
     private CarService carService;
 
-    // GET .../cars
+
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<Car> listOfCars() {
         return carService.listOfCars();
     }
 
-    // GET .../cars/{plateNumber}
+
     @GetMapping("/{plateNumber}")
     @ResponseStatus(HttpStatus.OK)
     public Car aCar(@PathVariable("plateNumber") String plateNumber) throws CarNotFoundException {
         return carService.findCar(plateNumber);
     }
 
-    // PUT .../cars/{plateNumber}?rent=true  (body: {"begin":"...","end":"..."})
-    // PUT .../cars/{plateNumber}?rent=false
+
     @PutMapping("/{plateNumber}")
     @ResponseStatus(HttpStatus.OK)
     public void rentOrGetBack(
             @PathVariable("plateNumber") String plateNumber,
             @RequestParam(value = "rent", required = true) boolean rent,
             @RequestBody(required = false) Dates dates) throws CarNotFoundException {
-
-        String begin = (dates != null) ? dates.getBegin() : null;
-        String end = (dates != null) ? dates.getEnd() : null;
-        carService.rent(plateNumber, rent, begin, end);
+        carService.rentOrGetBack(plateNumber, rent, dates);
     }
 
-    // Handle "not found" cleanly
-    @ExceptionHandler(CarNotFoundException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public String handleNotFound(CarNotFoundException ex) {
-        return ex.getMessage();
-    }
 }
