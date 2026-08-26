@@ -1,4 +1,4 @@
-package com.example.TP1.OOS;
+package com.example.TP1.OOS.service;
 
 public class CarNotFoundException extends Exception {
     public CarNotFoundException(String plateNumber) {
