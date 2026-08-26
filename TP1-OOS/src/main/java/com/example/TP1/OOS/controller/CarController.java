@@ -1,6 +1,6 @@
 package com.example.TP1.OOS.controller;
 
-import com.example.TP1.OOS.CarNotFoundException;
+import com.example.TP1.OOS.service.CarNotFoundException;
 import com.example.TP1.OOS.Car;
 import com.example.TP1.OOS.Dates;
 import com.example.TP1.OOS.service.CarService;
