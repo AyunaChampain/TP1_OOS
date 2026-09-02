@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -40,5 +41,7 @@ public class CarController {
             @RequestBody(required = false) Dates dates) throws CarNotFoundException {
         carService.rentOrGetBack(plateNumber, rent, dates);
     }
+
+
 
 }
