@@ -1,9 +1,21 @@
 package com.example.TP1.OOS;
 
 import jakarta.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+
+
 
 @Entity
 public class Car {
+
+    @ManyToMany
+    @JoinTable(
+            name = "car_person",
+            joinColumns = @JoinColumn(name = "platenumber"),
+            inverseJoinColumns = @JoinColumn(name = "person_id")
+    )
+    private Set<Person> passengers = new HashSet<>();
 
     @Id
     private String platenumber;
@@ -45,4 +57,7 @@ public class Car {
 
     public Dates getDate() { return date; }
     public void setDate(Dates date) { this.date = date; }
+
+    public Set<Person> getPassengers() { return passengers; }
+    public void setPassengers(Set<Person> passengers) { this.passengers = passengers; }
 }

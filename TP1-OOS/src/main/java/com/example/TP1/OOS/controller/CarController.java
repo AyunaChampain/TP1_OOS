@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import com.example.TP1.OOS.Person;
+import java.util.Set;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -42,6 +45,21 @@ public class CarController {
         carService.rentOrGetBack(plateNumber, rent, dates);
     }
 
+    @PostMapping("/{plateNumber}/passengers/{personId}")
+    public Car addPassenger(@PathVariable String plateNumber, @PathVariable Long personId)
+            throws CarNotFoundException {
+        return carService.addPassengerToCar(plateNumber, personId);
+    }
 
+    @DeleteMapping("/{plateNumber}/passengers/{personId}")
+    public Car removePassenger(@PathVariable String plateNumber, @PathVariable Long personId)
+            throws CarNotFoundException {
+        return carService.removePassengerFromCar(plateNumber, personId);
+    }
+
+    @GetMapping("/{plateNumber}/passengers")
+    public Set<Person> getPassengers(@PathVariable String plateNumber) throws CarNotFoundException {
+        return carService.getPassengers(plateNumber);
+    }
 
 }
